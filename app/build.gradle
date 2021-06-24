@@ -30,6 +30,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "app"
+    productFlavors {
+        pago {
+            dimension "app"
+        }
+        gratuito {
+            dimension "app"
+            applicationIdSuffix ".gratuito"
+            versionNameSuffix "-gratuito"
+        }
+    }
 }
 
 dependencies {

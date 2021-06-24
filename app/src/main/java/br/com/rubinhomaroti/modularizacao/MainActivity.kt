@@ -3,9 +3,11 @@ package br.com.rubinhomaroti.modularizacao
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import br.com.rubinhomaroti.domain.model.Carta
 import br.com.rubinhomaroti.mobcomponents.CustomToast
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btProximaCarta: Button
     private lateinit var tvPontuacao: TextView
     private lateinit var ivCarta: ImageView
+    private lateinit var containerPropaganda: ConstraintLayout
 
     private var cartas: MutableList<Carta> = mutableListOf()
     private val gerador = Random()
@@ -43,6 +46,15 @@ class MainActivity : AppCompatActivity() {
         setUpView()
         setListeners()
         iniciarPartida()
+        showBanner()
+    }
+
+    private fun showBanner() {
+        containerPropaganda.visibility = if (isGratuito()) View.VISIBLE else View.GONE
+    }
+
+    private fun isGratuito(): Boolean {
+        return packageName == "br.com.rubinhomaroti.modularizacao.gratuito"
     }
 
     private fun setUpView() {
@@ -50,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         btProximaCarta = findViewById(R.id.btProximaCarta)
         tvPontuacao = findViewById(R.id.tvPontuacao)
         ivCarta = findViewById(R.id.ivCarta)
+        containerPropaganda = findViewById(R.id.containerPropaganda)
     }
 
     private fun setListeners() {
