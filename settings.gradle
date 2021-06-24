@@ -1,0 +1,3 @@
+rootProject.name = "Modularizacao"
+include ':app'
+include ':domain'
